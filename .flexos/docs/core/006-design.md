@@ -1,111 +1,58 @@
 ---
-id: "006-design"
-title: "Design System"
+id: 006-design
+title: Design System & Vibe
+description: Outlines the visual style, color palette, typography, and overall user experience principles for the platform.
 type: doc
 subtype: core
 status: draft
 sequence: 6
-tags: [design, brand, colors, typography, components]
+tags:
+  - design
+  - ui
+  - ux
+createdAt: "2023-10-27T10:00:00Z"
+updatedAt: "2023-10-27T10:00:00Z"
 ---
 
-# Design System
+## 1. Core Principles & Vibe
 
-> The visual identity and component language of the product. Everything a designer or developer needs to build consistent UI.
+The design of COCKMAXXING must embody our core values: **Trustworthy, Supportive, and Empowering**. The user interface should feel like a secure, modern tool, not a sleazy or sensationalist forum. It must be clean, data-forward, and easy to navigate, inspiring confidence and encouraging consistent use. We are creating a private sanctuary for personal growth, and the design must reflect that at every touchpoint.
 
-## Brand Voice
+*   **Trustworthy:** The UI will be clean, professional, and transparent. Clear privacy indicators, intuitive settings, and an absence of dark patterns are paramount. The design should feel stable and reliable.
+*   **Supportive:** The color palette and typography will be calm and encouraging. Community interactions will be framed positively. The overall feel should be welcoming and non-judgmental.
+*   **Empowering:** Data visualizations will be clear and insightful. Users should feel in control of their data and their journey. The design should make complex information easy to understand and act upon.
 
-How does this product speak? Describe the tone, personality, and communication style:
+## 2. Color Palette
 
-- **Tone:** (professional, casual, playful, authoritative?)
-- **Voice:** (first person, second person, third person?)
-- **Personality traits:** (3-4 adjectives that describe the brand)
-- **Do:** (examples of on-brand copy)
-- **Don't:** (examples of off-brand copy)
+The color scheme is chosen to be modern, calming, and focused. It avoids aggressive or overly masculine colors, opting for a more mature and tech-oriented feel.
 
-## Color System
+*   **Primary Color (`primaryColor`):** `#8b5cf6` (Violet). This color is modern, unique, and conveys a sense of purpose and creativity. It will be used for primary buttons, active navigation links, and key interactive elements.
+*   **Accent Color (`accentColor`):** `#06b6d4` (Cyan). A vibrant yet cool accent used for secondary CTAs, highlights, notification badges, and positive data trends in charts.
+*   **Neutral Dark (`neutralDark`):** `#1a202c`. A deep, slightly blue-tinted charcoal for primary text, backgrounds in dark mode, and creating strong contrast.
+*   **Neutral Light (`neutralLight`):** `#f8fafc`. A clean, slightly cool off-white for page backgrounds in light mode, ensuring content is highly readable.
+*   **Supporting Colors:**
+    *   **Success:** `#22c55e` (Green) for success messages and positive indicators.
+    *   **Warning:** `#f59e0b` (Amber) for warnings or non-critical alerts.
+    *   **Danger:** `#ef4444` (Red) for error messages, delete confirmations, and critical alerts.
 
-### Primary Palette
+## 3. Typography
 
-- **Primary:** #000000 (main brand color, used for CTAs and key elements)
-- **Accent:** #000000 (complementary color for highlights and secondary actions)
+Typography will be clean, legible, and modern, prioritizing readability for both short-form UI text and long-form content in forums and the resource library.
 
-### Neutral Palette
+*   **Font Family (`fontFamily`):** **Inter**. This sans-serif typeface is highly legible at all sizes and has excellent screen rendering. Its neutral yet friendly character is a perfect fit for the platform's vibe.
+*   **Headings (H1, H2, H3):** Will use a heavier weight (e.g., `font-bold` or `font-semibold`) to create a clear visual hierarchy.
+*   **Body Text:** Will use a regular weight (`font-normal`) with a comfortable line height (e.g., `leading-relaxed`) to ensure long-form content is easy to read.
 
-- **Dark:** #000000 (text, headings)
-- **Medium:** #000000 (secondary text, borders)
-- **Light:** #000000 (backgrounds, cards)
-- **White:** #ffffff (page background)
+## 4. Layout & Navigation
 
-### Semantic Colors
+Consistency in layout is key to creating an intuitive user experience.
 
-- **Success:** #22c55e
-- **Warning:** #f59e0b
-- **Error:** #ef4444
-- **Info:** #3b82f6
+*   **Navigation Pattern:** A persistent **sidebar** will be used for the main navigation in the authenticated app. This provides quick, consistent access to all core pages: Dashboard, Forums, Progress Tracker, Resources, and Settings. The sidebar will be collapsible on larger screens and will transform into a slide-out menu on mobile devices.
+*   **Layout Grid:** A standard 12-column grid system will be used for consistency. Content will be constrained to a maximum width to ensure readability on large monitors.
+*   **Spacing & White Space:** Generous use of white space will be employed to reduce cognitive load, improve focus, and give the interface a clean, uncluttered feel. A consistent spacing scale (e.g., based on multiples of 4px or 8px) will be used for all margins and padding.
 
-### Color Usage
+## 5. Key Components
 
-- Primary is used for: CTAs, links, active states, primary navigation
-- Accent is used for: secondary buttons, highlights, badges
-- Never use more than 3 colors on a single component
-
-## Typography
-
-### Font Stack
-
-- **Headings:** (font family, weights used)
-- **Body:** (font family, weights used)
-- **Mono:** (font family, for code/data)
-
-### Scale
-
-| Level | Size | Weight | Line Height | Use |
-|-------|------|--------|-------------|-----|
-| H1 | 2.5rem | 700 | 1.2 | Page titles |
-| H2 | 2rem | 600 | 1.3 | Section headers |
-| H3 | 1.5rem | 600 | 1.4 | Card titles |
-| Body | 1rem | 400 | 1.6 | Paragraphs |
-| Small | 0.875rem | 400 | 1.5 | Captions, labels |
-
-## Component Patterns
-
-### Buttons
-
-- Primary: filled with primary color, white text
-- Secondary: outlined with primary color
-- Ghost: text only, no background
-- Sizes: sm (32px), md (40px), lg (48px)
-- All buttons have minimum 44px touch target on mobile
-
-### Cards
-
-- Background: white (light mode) / dark neutral (dark mode)
-- Border radius: 12px
-- Padding: 16px (mobile), 24px (desktop)
-- Shadow: subtle on hover
-
-### Forms
-
-- Labels above inputs
-- Inline validation messages below fields
-- Input height: 44px minimum (mobile touch target)
-- Focus state: primary color ring
-
-## Layout Patterns
-
-- **Desktop:** Sidebar (240px) + main content area
-- **Tablet:** Collapsible sidebar + full-width content
-- **Mobile:** Bottom navigation (56px) + full-width content
-- **Max content width:** 1200px, centered
-
-## Spacing System
-
-Base unit: 4px. Use multiples: 4, 8, 12, 16, 24, 32, 48, 64, 96.
-
-## Accessibility
-
-- Minimum contrast ratio: 4.5:1 (AA) for body text, 3:1 for large text
-- Focus indicators on all interactive elements
-- Touch targets minimum 44x44px
-- Screen reader support for all dynamic content
-- Reduced motion support via `prefers-reduced-motion`
+*   **Buttons:** Primary buttons will use the `primaryColor` with white text. Secondary buttons will be outlined or use a more subdued color. States (hover, focus, disabled) will be clearly defined.
+*   **Forms:** Inputs will be clean and simple, with clear labels and validation messages. Focus states will be prominent to improve accessibility.
+*   **Charts:** Data visualizations on the **Progress Tracker Page** will be clean and easy to read, using the `primaryColor` and `accentColor` for data lines against a neutral background. Tooltips will provide detailed information on hover.

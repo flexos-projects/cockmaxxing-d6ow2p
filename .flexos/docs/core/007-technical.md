@@ -1,99 +1,57 @@
 ---
-id: "007-technical"
-title: "Technical Architecture"
+id: 007-technical
+title: Technical Architecture & Stack
+description: An overview of the technology stack, frameworks, services, and key libraries chosen to build the COCKMAXXING platform.
 type: doc
 subtype: core
 status: draft
 sequence: 7
-tags: [technical, architecture, stack, deployment]
+tags:
+  - technical
+  - architecture
+  - firebase
+  - nuxt
+createdAt: "2023-10-27T10:00:00Z"
+updatedAt: "2023-10-27T10:00:00Z"
 ---
 
-# Technical Architecture
+## 1. Introduction
 
-> How the product is built, deployed, and maintained. The engineer's reference document.
+This document specifies the technical architecture for the COCKMAXXING platform. The chosen stack prioritizes rapid development, scalability, security, and a modern developer experience. The architecture is serverless-first, leveraging the Google Firebase ecosystem to handle the backend, authentication, and database, allowing the development team to focus on building a high-quality frontend user experience.
 
-## Tech Stack
+## 2. Core Technology Stack
 
-| Layer | Technology | Why |
-|-------|-----------|-----|
-| Framework | Nuxt 4 | Full-stack Vue, SSR, file-based routing |
-| Database | Firestore | Real-time, serverless, scales automatically |
-| Auth | Firebase Auth | Email/password, social login, session management |
-| Hosting | Vercel | Edge deployment, preview deploys, serverless functions |
-| Storage | Vercel Blob | File uploads, images, assets |
-| Styling | UnoCSS / Tailwind | Utility-first, design token integration |
+*   **Frontend Framework (`framework`): Nuxt 4 (Vue 3)**
+    *   **Why:** Nuxt provides a powerful, opinionated framework on top of Vue.js. Its features like file-based routing, server-side rendering (SSR) for SEO on public pages, and a rich module ecosystem will significantly accelerate development. The Vue 3 Composition API will allow for clean, maintainable, and reusable component logic.
 
-## Architecture Overview
+*   **Database (`database`): Firebase Firestore**
+    *   **Why:** Firestore is a scalable, real-time NoSQL document database that integrates seamlessly with our chosen authentication provider. Its powerful security rules are absolutely critical for enforcing the strict data privacy required for this application, especially for the `progress_entries` collection. Its real-time capabilities will enhance the user experience in features like **Private Messaging** and forum updates.
 
-Describe the high-level architecture — client/server split, data flow, caching strategy.
+*   **Authentication (`auth`): Firebase Authentication**
+    *   **Why:** Provides a secure, managed authentication service out of the box. We will implement Email/Password and Google Sign-In initially. It handles all the complexities of password hashing, session management, and social logins, and its UID system serves as the primary key for our `users` collection in Firestore.
 
-### Client
+*   **Hosting & Deployment (`hosting`): Firebase Hosting**
+    *   **Why:** Offers a global CDN, free SSL, and simple, one-command deployments directly from the command line. Its integration with Firebase Cloud Functions will allow us to easily add server-side logic (e.g., for notifications or data aggregation) in the future.
 
-- Nuxt 4 SPA with SSR for public pages
-- Vue 3 Composition API throughout
-- State management via composables (not Pinia unless complex)
-- File-based routing with middleware for auth gates
+*   **File Storage: Firebase Storage**
+    *   **Why:** Used for securely storing user-uploaded files, specifically the private photos for the **Progress Tracking & Journaling** feature. Like Firestore, it is protected by a robust security rules engine, ensuring that a user can only access their own uploaded files.
 
-### Server
+## 3. Key Packages & Libraries
 
-- Nuxt server routes (server/api/)
-- Firebase Admin SDK for privileged operations
-- Server-side rendering for SEO-critical pages
-- Edge functions for API routes
+*   **UI Component Library (`nuxt/ui`):** A component library built on top of Tailwind CSS. This will provide a set of beautiful, accessible, and themeable components (buttons, forms, modals) out of the box, allowing us to build the UI quickly while adhering to the specifications in the **Design System**.
 
-### Data Flow
+*   **Firebase Integration (`@nuxtjs/firebase`):** The official Nuxt module for Firebase. This simplifies the integration of all Firebase services (Auth, Firestore, Storage) into the Nuxt application, providing a clean and idiomatic way to interact with the backend.
 
-```
-Client → Nuxt Server Routes → Firestore
-         ↕                     ↕
-      Firebase Auth         Cloud Functions (if needed)
-```
+*   **Data Visualization (`chart.js`):** A powerful and flexible charting library. It will be used to render the line graphs for the **Progress Tracker Page**, visualizing user measurement data over time. We will use it via a Vue 3 wrapper library for easier integration.
 
-## API Routes
+*   **Image Handling (`vue-advanced-cropper`):** This library will be used for handling user avatar uploads. It provides a user-friendly interface for users to crop and resize their profile pictures before they are uploaded to Firebase Storage, ensuring a consistent format.
 
-List every API endpoint the product needs:
+## 4. API & Service Integrations
 
-| Method | Path | Purpose | Auth |
-|--------|------|---------|------|
-| POST | /api/auth/login | Authenticate user | No |
-| GET | /api/[resource] | List resources | Yes |
-| POST | /api/[resource] | Create resource | Yes |
-| (continue...) | | | |
+The application will be a Single Page Application (SPA) that communicates directly with Firebase services from the client-side. The architecture does not require a traditional REST or GraphQL API server, as the Firebase SDKs provide all the necessary methods for data manipulation.
 
-## Authentication
+*   **Firebase Authentication API:** Used for all user lifecycle events: sign-up, login, logout, password reset.
+*   **Firebase Firestore API:** Used for all CRUD (Create, Read, Update, Delete) operations on the database collections defined in the **Database Schema** document.
+*   **Firebase Storage API:** Used for uploading, downloading, and deleting user-generated files (avatars, private progress photos).
 
-- **Method:** Firebase Auth (email/password + Google OAuth)
-- **Session:** HTTP-only cookie with Firebase session token
-- **Middleware:** `auth.ts` middleware checks session on protected routes
-- **Token refresh:** Automatic via Firebase SDK
-
-## Environment Variables
-
-| Variable | Purpose | Required |
-|----------|---------|----------|
-| `FIREBASE_PROJECT_ID` | Firebase project | Yes |
-| `FIREBASE_CLIENT_EMAIL` | Service account | Yes |
-| `FIREBASE_PRIVATE_KEY` | Service account | Yes |
-| (continue...) | | |
-
-## Deployment
-
-- **Production:** Vercel, auto-deploy from `main` branch
-- **Preview:** Vercel preview deploys on every PR
-- **Database:** Firestore production instance
-- **CI/CD:** GitHub Actions for linting, type-checking, tests
-
-## Performance Targets
-
-- **First Contentful Paint:** < 1.5s
-- **Time to Interactive:** < 3s
-- **Lighthouse Score:** > 90 (performance, accessibility)
-- **API Response Time:** < 200ms (p95)
-
-## Security Considerations
-
-- All API routes validate input (Zod schemas)
-- Firestore security rules enforce per-document access
-- CORS configured for production domain only
-- Rate limiting on auth endpoints
-- No secrets in client bundle
+This client-side approach, fortified by stringent Firestore and Storage Security Rules, creates a secure and highly scalable serverless architecture.
