@@ -1,41 +1,35 @@
 ---
-id: "000-import"
-title: "Project Origin"
-type: doc
-subtype: core
+id: project-summary
+title: COCKMAXXING Project Overview
+description: A high-level summary of the COCKMAXXING project, its mission, core components, and technical foundation.
+type: spec
+subtype: summary
 status: draft
-sequence: 0
-tags: [origin, provenance]
+sequence: 000
+tags: [project, overview, summary, concept]
+relatesTo: []
+createdAt: 2024-07-30T12:00:00Z
+updatedAt: 2024-07-30T12:00:00Z
 ---
+# COCKMAXXING: Project Overview
 
-# Project Origin
+COCKMAXXING is envisioned as a community-driven platform dedicated to supporting individuals on their penis enlargement journeys. It addresses a significant problem: the widespread lack of reliable information, supportive communities, and safe practices in this sensitive area. The internet is often a source of misinformation and dangerous methods, leaving individuals confused and vulnerable. Our solution is to provide a moderated, evidence-based, and privacy-focused environment where members can safely share experiences, track progress, and access vetted resources.
 
-> Every FlexOS project has an origin story. This document records how the project was created and what source material informed it.
+## Core Concept:
 
-## Source
+-   **Problem:** Difficulty finding reliable information and support for penis enlargement, leading to misinformation and potential harm.
+-   **Solution:** A moderated, evidence-based community with progress tracking, curated resources, and expert engagement.
+-   **Target User:** Men aged 25-55, seeking self-improvement, data-driven approaches, peer support, and privacy in their enlargement journey.
+-   **Unique Value:** Combines peer support with expert-reviewed resources and robust private progress tracking, all within a non-judgmental, privacy-focused community.
 
-Describe how this project came into existence. Was it imagined from a description? Imported from an existing GitHub repository? Scraped from a live website? Created from a template?
+## Key Features:
 
-- **Type:** imagination | github_import | website_scrape | blank | template
-- **Source:** (URL, description, or "from scratch")
-- **Date:** (when the project was created)
+The platform's core functionalities include **Community Forums** for discussion, **Progress Tracking & Journaling** for personal data management, a **Curated Resource Library** for vetted information, **Private Messaging** for discreet communication, and secure **User Authentication & Profiles** with **Personalized Settings**.
 
-## Original Input
+## Main Pages & User Flows:
 
-Capture the raw input that started this project — the brain dump, the GitHub URL, the website, or the template name. This is the seed everything else grew from.
+Users will interact with a **Landing Page**, **Login/Signup** authentication, a personalized **Dashboard**, dedicated **Community Forums**, a detailed **Progress Tracker**, a **Resource Library**, **Private Messages**, and a **Settings** page. Key user flows include **New User Signup & Onboarding**, **Logging Daily Progress**, and **Participating in Forum Discussions**.
 
-## What Was Learned
+## Data & Technology:
 
-If this project was imported or scraped, summarize the key insights extracted from the source material. What was the original project trying to be? What worked? What was missing?
-
-## Decisions Made
-
-Record any early decisions about scope, direction, or technology that were made during project creation. Why was this approach chosen over alternatives?
-
-## Provenance Chain
-
-If this project builds on previous work, link to the sources:
-
-- **Parent project:** (if forked or imported from another FlexOS project)
-- **External sources:** (GitHub repos, websites, documents that informed this)
-- **AI models used:** (which models generated the initial content)
+Data is structured around collections such as `users`, `posts`, `comments`, `progress_entries`, and `resources`. The technical stack leverages **Nuxt 4 (Vue 3)** for the frontend, **Firebase Firestore** for the database, **Firebase Authentication** for user management, and **Firebase Hosting** for deployment. The design emphasizes a modern, clean, and empowering aesthetic with a focus on trust and support.
